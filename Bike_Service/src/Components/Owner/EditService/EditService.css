@@ -1,0 +1,67 @@
+.editservice{
+    margin-top: 4%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+}
+
+
+.eservice{
+    width:50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.eservice h1{
+    color: var(--main-color);
+    text-align: center;
+    font-size: 4rem;
+}
+
+.eservice label{
+    color: var(--main-color);
+    font-size: 25px;
+}
+
+.eservice input{
+    padding-left: 5px;
+    border-radius: 5px;
+    color: var(--main-color);
+    font-size:18px;
+    font-weight:600;
+    background-color: aliceblue;
+    border: 2px solid black;
+}
+
+.actions{
+    margin-top: 2%;
+    display: inline-flex;
+    gap: 30px;
+}
+
+.actions button{
+    height: 50px;
+    width:200px;
+    border-radius: 50px;
+}
+
+.service2{
+    width:30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width : 1000px){
+    .editservice{
+        flex-direction: column;
+    }
+    .eservice{
+        width:80%;
+    }
+    .service2{
+        width:100%;
+    }
+}

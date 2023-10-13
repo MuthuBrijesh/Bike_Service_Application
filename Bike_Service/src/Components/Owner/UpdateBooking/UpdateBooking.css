@@ -1,0 +1,127 @@
+.vbooking h1{
+    color: var(--main-color);
+    text-align: center;
+    font-size: 4rem;
+}
+
+.updatebooking{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap:3%;
+}
+
+.updatebooking form{
+    margin-bottom: 2%;
+    width:60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.updatebooking form .box .box-row{
+    display: flex;
+    gap: 100px;
+}
+
+.updatebooking form .box .box-row .box-col{
+    display: flex;
+    flex-direction: column;
+}
+
+.updatebooking form .box{
+    display: flex;
+    flex-direction: column;
+}
+
+.updatebooking label{
+    color: var(--main-color);
+    font-size: 1.3rem;
+    font-weight: 540;
+}
+
+.actions{
+    margin-top: 2%;
+    display: inline-flex;
+    gap: 30px;
+}
+
+.actions button{
+    height: 50px;
+    width:200px;
+    border-radius: 50px;
+}
+
+.updatebooking form .box input{
+    color: var(--main-color);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+.updatebooking form .box .date{
+    height: 60px;
+    padding-left: 10px;
+    background-color: var(--background-color);
+}
+
+.updatebooking img{
+    height: 550px;
+}
+
+.Update{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3%;
+}
+
+
+@media only screen and (max-width : 1300px){
+    .updatebooking{
+        gap:0%;
+    }
+    .updatebooking img{
+        height: 500px;
+        width:500px
+    }
+    .updatebooking form .box .box-row{
+        display: flex;
+        gap: 50px;
+    }
+    
+}
+
+@media only screen and (max-width : 1200px){
+    .updatebooking img{
+        height: 400px;
+        width:400px
+    }
+}
+
+@media only screen and (max-width : 1100px){
+    .updatebooking img{
+        display: none;
+    }
+}
+
+@media only screen and (max-width : 800px){
+    .updatebooking{
+        flex-direction: column;
+    }
+    .updatebooking form .box .box-row{
+        display: flex;
+        gap: 20px;
+    }
+}
+
+@media only screen and (max-width : 650px){
+    .updatebooking form .box .box-row{
+        display: flex;
+        gap:0px;
+        flex-direction: column;
+    }
+}

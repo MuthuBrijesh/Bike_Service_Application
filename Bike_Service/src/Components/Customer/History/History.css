@@ -1,0 +1,67 @@
+.custhistory{
+    margin-top:3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.custhistory h1{
+    color: var(--main-color);
+    text-align: center;
+    font-size: 4rem;
+}
+
+.custhistory .header{
+    height: 100px;
+    width:80%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.custhistory .header button{
+    background-color: var(--main-color);
+    height:45px;
+    width:100px;
+}
+
+.custhistory .header button:hover{
+    background-color: var(--main-color);
+}
+
+.custhistory .box{
+    margin-top: 3%;
+    width:80%
+}
+
+.custhistory .box select{
+    width:120px;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.custhistory .box .opt{
+    width:120px;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+    
+}
+
+.custhistory .box tr{
+    border: 2px solid #683B2B;
+}
+
+.custhistory .box th{
+    background-color: var(--main-color);
+    font-size: larger;
+    font-weight: 700;
+}
+
+.custhistory .box td{
+    font-size: larger;
+    font-weight: 700;
+}

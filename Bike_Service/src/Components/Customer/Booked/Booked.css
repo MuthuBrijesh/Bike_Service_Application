@@ -1,0 +1,68 @@
+.custbooked{
+    margin-top:3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.custbooked h1{
+    color: var(--main-color);
+    text-align: center;
+    font-size: 4rem;
+}
+
+.custbooked .header{
+    height: 100px;
+    width:80%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.custbooked .header button{
+    background-color: var(--main-color);
+    height:45px;
+    width:100px;
+}
+
+.custbooked .header button:hover{
+    background-color: var(--main-color);
+}
+
+.custbooked .box{
+    margin-top: 3%;
+    width:80%;
+    margin-bottom:3%;
+}
+
+.custbooked .box select{
+    width:120px;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.custbooked .box .opt{
+    width:120px;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+    
+}
+
+.custbooked .box tr{
+    border: 2px solid #683B2B;
+}
+
+.custbooked .box th{
+    background-color: var(--main-color);
+    font-size: larger;
+    font-weight: 700;
+}
+
+.custbooked .box td{
+    font-size: larger;
+    font-weight: 700;
+}

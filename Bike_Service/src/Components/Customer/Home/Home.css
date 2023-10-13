@@ -1,0 +1,101 @@
+.CustHome{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+
+.CustHome .CustHomeDetails{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:50%;
+}
+.CustHome .CustHomeDetails .container{
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+.CustHome .CustHomeDetails .container h1{
+    font-size: 6rem;
+    color: var(--main-color);
+}
+
+.CustHome .CustHomeDetails .container h3{
+    margin-top: 4%;
+    font-size: 3rem;
+    color: var(--sub-text-color);
+}
+
+.CustHome .CustHomeDetails .container button{
+    min-width: 250px;
+    height: 50px;
+    margin-top: 5%;
+    margin-bottom: 20px;
+    background-color: var(--sub-text-color);
+    color: var(--main-color);
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: larger;
+    cursor:pointer;
+}
+
+.CustHome .CustHomeImage img{
+    height:600px
+}
+
+@media only screen and (max-width : 1400px){
+    .CustHome .CustHomeImage img{
+        height:500px
+    }
+}
+
+@media only screen and (max-width : 1200px){
+    .CustHome .CustHomeDetails .container h1{
+        font-size: 3.5rem;
+    }
+    .CustHome .CustHomeImage img{
+        height:400px
+    }
+}
+
+@media only screen and (max-width : 1000px){
+    .CustHome{
+        flex-direction: column;
+    }
+    .CustHome .CustHomeDetails{
+        width:90%;
+    }
+
+    .CustHome .CustHomeDetails .container h1{
+        font-size: 3.8rem;
+        font-family:'Times New Roman', Times, serif;
+    }
+
+    .CustHome .CustHomeDetails .container{
+        width:100%;
+    }
+
+    .CustHome .CustHomeDetails .container{
+        margin-left: 10%;
+    }
+    
+    .CustHome .CustHomeDetails .container button{
+        min-width: 200px;
+    }
+}
+
+@media only screen and (max-width : 600px){
+    .CustHome .CustHomeDetails .container h1{
+        font-size: 3rem;
+        font-family:'Times New Roman', Times, serif;
+    }
+    .CustHome .CustHomeDetails .container h3{
+        font-size: 1.8rem;
+    }
+    .CustHome .CustHomeImage img{
+        margin-top: 0%;
+        margin-left: 0%;
+        height:300px;
+    }
+}

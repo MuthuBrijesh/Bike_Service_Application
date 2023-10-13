@@ -1,0 +1,118 @@
+.vbooking h1{
+    color: var(--main-color);
+    text-align: center;
+    font-size: 4rem;
+}
+
+.viewbooking{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap:3%;
+}
+
+.viewbooking form{
+    margin-bottom: 2%;
+    width:60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.viewbooking form .box .box-row{
+    display: flex;
+    gap: 100px;
+}
+
+.viewbooking form .box .box-row .box-col{
+    display: flex;
+    flex-direction: column;
+}
+
+.viewbooking form .box{
+    display: flex;
+    flex-direction: column;
+}
+
+.viewbooking label{
+    color: var(--main-color);
+    font-size: 1.3rem;
+    font-weight: 540;
+}
+
+.actions{
+    margin-top: 2%;
+    display: inline-flex;
+    gap: 30px;
+}
+
+.actions button{
+    height: 50px;
+    width:200px;
+    border-radius: 50px;
+}
+
+.viewbooking form .box input{
+    color: var(--main-color);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+.viewbooking form .box .date{
+    height: 60px;
+    padding-left: 10px;
+    background-color: var(--background-color);
+}
+
+.viewbooking img{
+    height: 550px;
+}
+
+@media only screen and (max-width : 1300px){
+    .viewbooking{
+        gap:0%;
+    }
+    .viewbooking img{
+        height: 500px;
+        width:500px
+    }
+    .viewbooking form .box .box-row{
+        display: flex;
+        gap: 50px;
+    }
+    
+}
+
+@media only screen and (max-width : 1200px){
+    .viewbooking img{
+        height: 400px;
+        width:400px
+    }
+}
+
+@media only screen and (max-width : 1100px){
+    .viewbooking img{
+        display: none;
+    }
+}
+
+@media only screen and (max-width : 800px){
+    .viewbooking{
+        flex-direction: column;
+    }
+    .viewbooking form .box .box-row{
+        display: flex;
+        gap: 20px;
+    }
+}
+
+@media only screen and (max-width : 650px){
+    .viewbooking form .box .box-row{
+        display: flex;
+        gap:0px;
+        flex-direction: column;
+    }
+}

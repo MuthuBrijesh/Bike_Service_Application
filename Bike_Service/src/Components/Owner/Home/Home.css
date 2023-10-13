@@ -1,0 +1,110 @@
+.AdminHome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.AdminHome .AdminHomeDetails {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.AdminHome .AdminHomeDetails .container {
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+.AdminHome .AdminHomeDetails .container h1 {
+    font-size: 6rem;
+    color: var(--main-color);
+}
+
+.AdminHome .AdminHomeDetails .container h3 {
+    margin-top: 4%;
+    font-size: 3rem;
+    color: var(--sub-text-color);
+}
+
+.AdminHome .AdminHomeDetails .container button {
+    min-width: 250px;
+    height: 50px;
+    margin-top: 5%;
+    margin-bottom: 20px;
+    background-color: var(--sub-text-color);
+    color: var(--main-color);
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: larger;
+    cursor: pointer;
+}
+
+
+.AdminHome .AdminHomeImage img {
+    height: 400px;
+    width: auto;
+    z-index: -1;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+@media only screen and (max-width : 1400px) {
+    .AdminHome .AdminHomeImage img {
+        height: 500px
+    }
+}
+
+@media only screen and (max-width : 1200px) {
+    .AdminHome .AdminHomeDetails .container h1 {
+        font-size: 3.5rem;
+    }
+
+    .AdminHome .AdminHomeImage img {
+        height: 400px
+    }
+}
+
+@media only screen and (max-width : 1000px) {
+    .AdminHome {
+        flex-direction: column;
+    }
+
+    .AdminHome .AdminHomeDetails {
+        width: 90%;
+    }
+
+    .AdminHome .AdminHomeDetails .container h1 {
+        font-size: 3.8rem;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .AdminHome .AdminHomeDetails .container {
+        width: 100%;
+    }
+
+    .AdminHome .AdminHomeDetails .container {
+        margin-left: 10%;
+    }
+
+    .AdminHome .AdminHomeDetails .container button {
+        min-width: 200px;
+    }
+}
+
+@media only screen and (max-width : 600px) {
+    .AdminHome .AdminHomeDetails .container h1 {
+        font-size: 3rem;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .AdminHome .AdminHomeDetails .container h3 {
+        font-size: 1.8rem;
+    }
+
+    .AdminHome .AdminHomeImage img {
+        margin-top: 0%;
+        margin-left: 0%;
+        height: 300px;
+    }
+}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Navbar.css';
 import { NavLink } from 'react-router-dom';
 import { CgMenuGridR, CgClose } from 'react-icons/cg';
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {

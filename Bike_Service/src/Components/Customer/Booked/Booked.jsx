@@ -8,7 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useState ,useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
 function Booked() {
@@ -17,15 +17,18 @@ function Booked() {
 
   useEffect(() => {
     const email = sessionStorage.getItem("Email")
-    console.log(email)
-    fetch("http://localhost:5000/fetchbook", {
-      method: "POST", crossDomain: true,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-    }).then((res) => res.json())
-      .then((data) => {
-        setData(data.data);
-      });
+    try {
+      fetch("http://localhost:5000/fetchbook", {
+        method: "POST", crossDomain: true,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      }).then((res) => res.json())
+        .then((data) => {
+          setData(data.data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   const updateservice = (_id) => {
@@ -56,7 +59,7 @@ function Booked() {
                   <TableCell scope="row">{row.date}</TableCell>
                   <TableCell >{row.name}</TableCell>
                   <TableCell >{row.vno}</TableCell>
-                  <TableCell >{row.service+""}</TableCell>
+                  <TableCell >{row.service + ""}</TableCell>
                   <TableCell >{row.status}</TableCell>
                   <TableCell><Button variant="contained" onClick={() => { updateservice(row._id) }}>View</Button></TableCell>
                 </TableRow>

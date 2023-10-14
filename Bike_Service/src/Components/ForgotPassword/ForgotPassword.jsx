@@ -30,22 +30,26 @@ function ForgotPassword() {
                         minLength: 8, minLowercase: 1,
                         minUppercase: 1, minNumbers: 1, minSymbols: 1
                     })) {
-                        fetch("http://localhost:5000/forgotpasswordotp", {
-                            method: "POST", crossDomain: true,
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({ email, otp }),
-                        })
-                            .then((res) => res.json())
-                            .then((result) => {
-                                if (result.status === "ok") {
-                                    alert("OTP Sent");
-                                    if (state === false) {
-                                        setState(!state);
+                        try {
+                            fetch("http://localhost:5000/forgotpasswordotp", {
+                                method: "POST", crossDomain: true,
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ email, otp }),
+                            })
+                                .then((res) => res.json())
+                                .then((result) => {
+                                    if (result.status === "ok") {
+                                        alert("OTP Sent");
+                                        if (state === false) {
+                                            setState(!state);
+                                        }
+                                    } else {
+                                        alert("No Such Email Exist")
                                     }
-                                } else{
-                                    alert("No Such Email Exist")
-                                }
-                            });
+                                });
+                        } catch (error) {
+                            console.log(error);
+                        }
                     } else {
                         alert("Weak Password")
                         alert("Enter Valid Password format should be have atleast one lowercase, uppercase, number, symbol and length of this password shoul be 8")
@@ -63,18 +67,22 @@ function ForgotPassword() {
 
     const otpupdate = () => {
         if (setuotp === setotp) {
-            fetch("http://localhost:5000/forgotpasswordupdate", {
-                method: "POST", crossDomain: true,
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, pass }),
-            })
-                .then((res) => res.json())
-                .then((result) => {
-                    if (result.status === "ok") {
-                        alert("Updated Succesfully!!");
-                        navigate(`../login`)
-                    }
-                });
+            try {
+                fetch("http://localhost:5000/forgotpasswordupdate", {
+                    method: "POST", crossDomain: true,
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, pass }),
+                })
+                    .then((res) => res.json())
+                    .then((result) => {
+                        if (result.status === "ok") {
+                            alert("Updated Succesfully!!");
+                            navigate(`../login`)
+                        }
+                    });
+            } catch (error) {
+                console.log(error);
+            }
         } else {
             alert(setuotp)
         }

@@ -16,15 +16,19 @@ function EditService() {
 
   const _id = sessionStorage.getItem("changeser");
   useEffect(() => {
-    fetch("http://localhost:5000/fetchservice", {
-      method: "POST", crossDomain: true,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ _id }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data.data);
-      });
+    try {
+      fetch("http://localhost:5000/fetchservice", {
+        method: "POST", crossDomain: true,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ _id }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setData(data.data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   const handleCancel = () => {
@@ -33,7 +37,6 @@ function EditService() {
   }
 
   const handleSubmit = () => {
-    console.log(_id)
     if (sname !== undefined) {
       data.sname = sname
     }
@@ -43,19 +46,22 @@ function EditService() {
     if (samount !== undefined) {
       data.samount = samount
     }
-    fetch("http://localhost:5000/updateservice", {
-      method: "POST", crossDomain: true,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ data }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data, "UserRegister");
-        if (data.status === "OK") {
-          alert("Updated Succesfully");
-          navigate(`../adminservice`)
-        }
-      });
+    try {
+      fetch("http://localhost:5000/updateservice", {
+        method: "POST", crossDomain: true,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === "OK") {
+            alert("Updated Succesfully");
+            navigate(`../adminservice`)
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <div className='editservice'>

@@ -40,15 +40,19 @@ function Booking() {
 
     //Services
     useEffect(() => {
-        fetch("http://localhost:5000/service", {
-            method: "POST", crossDomain: true,
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                setData(data.data);
-            });
+        try {
+            fetch("http://localhost:5000/service", {
+                method: "POST", crossDomain: true,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    setData(data.data);
+                });
+        } catch (error) {
+            console.log(error);
+        }
     });
 
     const handleChange = (event) => {
@@ -73,7 +77,6 @@ function Booking() {
                                     })
                                         .then((res) => res.json())
                                         .then((data) => {
-                                            console.log(data, "UserRegister");
                                             if (data.status === "ok") {
                                                 alert("Added Succesfully");
                                                 navigate(`../customerhome`)

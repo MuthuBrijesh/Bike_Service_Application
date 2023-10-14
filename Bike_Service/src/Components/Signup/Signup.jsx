@@ -10,7 +10,7 @@ const Signup = () => {
   const [pass, setPass] = useState();
   const [cpass, setCPass] = useState();
   const navigate = useNavigate()
-  
+
   const handleSubmit = (e) => {
     e.preventDefault()
     if (validator.isEmail(email) && email != null) {
@@ -20,22 +20,25 @@ const Signup = () => {
             minLength: 8, minLowercase: 1,
             minUppercase: 1, minNumbers: 1, minSymbols: 1
           })) {
-            fetch("http://localhost:5000/signup", {
-              method: "POST", crossDomain: true,
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ email, phone, pass, }),
-            })
-              .then((res) => res.json())
-              .then((data) => {
-                console.log(data, "UserRegister");
-                if (data.status === "ok") {
-                  alert("Register Succesfully");
-                  navigate('../login');
-                }
-                else {
-                  alert("User Email or Phone Number Already Exist");
-                }
-              });
+            try {
+              fetch("http://localhost:5000/signup", {
+                method: "POST", crossDomain: true,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, phone, pass, }),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  if (data.status === "ok") {
+                    alert("Register Succesfully");
+                    navigate('../login');
+                  }
+                  else {
+                    alert("User Email or Phone Number Already Exist");
+                  }
+                });
+            } catch (error) {
+              console.log(error);
+            }
           } else {
             alert('Is Not Strong Password')
             alert('Enter Valid Password format should be have atleast one lowercase, uppercase, number, symbol and length of this password shoul be 8')

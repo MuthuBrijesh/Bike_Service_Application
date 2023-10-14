@@ -15,17 +15,21 @@ function UpdateBooking() {
 
     //Fetching Booking Details
     useEffect(() => {
-        fetch("http://localhost:5000/viewbooking", {
-            method: "POST", crossDomain: true,
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ _id }),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                setData(data.data);
-            });
+        try {
+            fetch("http://localhost:5000/viewbooking", {
+                method: "POST", crossDomain: true,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ _id }),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    setData(data.data);
+                });
+        } catch (error) {
+            console.log(error);
+        }
     });
-    var status="Ready";
+    var status = "Ready";
 
     //Cancel the Form
     const handleBack = () => {
@@ -33,26 +37,28 @@ function UpdateBooking() {
     }
 
     const handleUpdate = () => {
-        console.log("Updating")
         if (data.status === "Completed") {
             alert("Already the Service is Completed")
         }
         else {
             if (data.status === "Ready") {
-                status="Completed"
-                console.log(status)
+                status = "Completed"
             }
-            fetch("http://localhost:5000/updatebooking", {
-                method: "POST", crossDomain: true,
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ _id, status }),
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                    if (data.status === "ok") {
-                        alert("Updated Succesfully")
-                    }
-                });
+            try {
+                fetch("http://localhost:5000/updatebooking", {
+                    method: "POST", crossDomain: true,
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ _id, status }),
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.status === "ok") {
+                            alert("Updated Succesfully")
+                        }
+                    });
+            } catch (error) {
+                console.log(error);
+            }
         }
         navigate("../admincustbooking")
     }

@@ -10,14 +10,17 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import TextField from '@mui/material/TextField';
 
 function Service() {
 
     const navigate = useNavigate()
+    const [noofbook, setNoofBook] = useState("");
 
     const [data, setData] = useState([]);
     useEffect(() => {
+        try{
         fetch("http://localhost:5000/service", {
             method: "POST", crossDomain: true,
             headers: { "Content-Type": "application/json" },
@@ -27,7 +30,28 @@ function Service() {
             .then((data) => {
                 setData(data.data);
             });
+        } catch (error) {
+            console.log(error);
+        }
     });
+
+    const UpdateNoofBook = () =>{
+        try{
+        fetch("http://localhost:5000/updatenoofbook", {
+            method: "POST", crossDomain: true,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ noofbook }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.status === "ok") {
+                    alert("Updated Succesfully");
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const updateservice = (_id) => {
         sessionStorage.setItem("changeser", _id);
@@ -37,6 +61,7 @@ function Service() {
     const AddServ = () =>{sessionStorage.setItem("changeser", null);}
 
     const deleteservice = (_id) => {
+        try{
         fetch("http://localhost:5000/deleteservice", {
             method: "POST", crossDomain: true,
             headers: { "Content-Type": "application/json" },
@@ -44,19 +69,25 @@ function Service() {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data, "UserRegister");
                 if (data.status === "ok") {
                     alert("Deleted Succesfully");
                     navigate(`../service`)
                 }
             });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
         <div className='custservice'>
             <h1>List of Services</h1>
             <div className='header'>
-                <Button variant="contained" style={{ backgroundColor: 'green', height: 45, textDecoration: 'none' }}><Link to='../addservice' onClick={AddServ} className='linkadd'>Add New Service</Link></Button>
+                <Button variant="contained" style={{ backgroundColor: 'green', height: 45, textDecoration: 'none' ,width:180}}><Link to='../addservice' onClick={AddServ} className='linkadd'>Add New Service</Link></Button>
+                <div className='noofbook'>
+                <TextField placeholder="No of Booking Per Day" style={{ marginBottom: 20, marginTop: 10, width:300 }} id="name" onChange={(e) => setNoofBook(e.target.value)} />
+                <Button variant="contained" style={{ backgroundColor: 'green', height: 45, textDecoration: 'none',width:150 }} onClick={UpdateNoofBook}>Update</Button>
+                </div>
             </div>
             <div className='box'>
                 <TableContainer component={Paper} >

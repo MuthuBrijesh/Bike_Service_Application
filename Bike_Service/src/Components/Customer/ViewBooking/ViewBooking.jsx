@@ -13,20 +13,21 @@ function ViewBooking() {
     const [data, setData] = useState([]);
 
     const _id = sessionStorage.getItem("BookingID")
-    console.log(_id)
-
     //Fetching Booking Details
     useEffect(() => {
-        console.log("HI")
-        fetch("http://localhost:5000/viewbooking", {
-            method: "POST", crossDomain: true,
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({_id}),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                setData(data.data);
-            });
+        try {
+            fetch("http://localhost:5000/viewbooking", {
+                method: "POST", crossDomain: true,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ _id }),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    setData(data.data);
+                });
+        } catch (error) {
+            console.log(error);
+        }
     });
 
     //Cancel the Form
@@ -41,7 +42,7 @@ function ViewBooking() {
         width: 300,
         border: '1px solid Black',
         borderRadius: 5,
-        fontSize:20,
+        fontSize: 20,
     }
 
     return (
@@ -55,7 +56,7 @@ function ViewBooking() {
                         <div className='box-row'>
                             <div className='box-col'>
                                 <label id='date'>Date</label>
-                                <TextField style={st} id="date" value={data.date}/>
+                                <TextField style={st} id="date" value={data.date} />
                             </div>
                             <div className='box-col'>
                                 <label id='name'>Name</label>
@@ -65,11 +66,11 @@ function ViewBooking() {
                         <div className='box-row'>
                             <div className='box-col'>
                                 <label id='email'>Email</label>
-                                <TextField style={st} id="email"  value={data.email}/>
+                                <TextField style={st} id="email" value={data.email} />
                             </div>
                             <div className='box-col'>
                                 <label id='phone'>Phone</label>
-                                <TextField style={st} id="phone"  value={data.phone}/>
+                                <TextField style={st} id="phone" value={data.phone} />
                             </div>
                         </div>
                         <div className='box-row'>
@@ -79,27 +80,27 @@ function ViewBooking() {
                             </div>
                             <div className='box-col'>
                                 <label id='vmodel'>Vehicle Model</label>
-                                <TextField style={st} id="vmodel"  value={data.vmodel}/>
+                                <TextField style={st} id="vmodel" value={data.vmodel} />
                             </div>
                         </div>
                         <div className='box-row'>
                             <div className='box-col'>
                                 <label id='vno'>Vehicle Number</label>
-                                <TextField style={st} id="vno"  value={data.vno}/>
+                                <TextField style={st} id="vno" value={data.vno} />
                             </div>
                             <div className='box-col'>
                                 <label id='addr'>Address</label>
-                                <TextField style={st} id="addr"  value={data.address}/>
+                                <TextField style={st} id="addr" value={data.address} />
                             </div>
                         </div>
                         <div className='box-row'>
                             <div className='box-col'>
                                 <label id='status'>Status</label>
-                                <TextField style={st} id="status"  value={data.status}/>
+                                <TextField style={st} id="status" value={data.status} />
                             </div>
                             <div className='box-col'>
                                 <label id='service'>Service</label>
-                                <TextField style={st} id="service"  value={data.service}/>
+                                <TextField style={st} id="service" value={data.service} />
                             </div>
                         </div>
                     </div>

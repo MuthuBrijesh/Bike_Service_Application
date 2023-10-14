@@ -16,13 +16,14 @@ function AddService() {
   const _id = sessionStorage.getItem("changeser");
 
   const handleCancel = () => {
-      navigate(`../adminservice`)
+    navigate(`../adminservice`)
   }
 
   const handleSubmit = () => {
-      if (sname != null) {
-        if (sdesc != null) {
-          if (samount != null && samount > 0) {
+    if (sname != null) {
+      if (sdesc != null) {
+        if (samount != null && samount > 0) {
+          try {
             fetch("http://localhost:5000/addservice", {
               method: "POST", crossDomain: true,
               headers: { "Content-Type": "application/json" },
@@ -30,7 +31,6 @@ function AddService() {
             })
               .then((res) => res.json())
               .then((data) => {
-                console.log(data, "UserRegister");
                 if (data.status === "ok") {
                   alert("Added Succesfully");
                   navigate(`../adminservice`)
@@ -39,24 +39,27 @@ function AddService() {
                   alert("Service Already Exist");
                 }
               });
-          } else {
-            alert("Invalid Service Amount")
+          } catch (error) {
+            console.log(error);
           }
         } else {
-          alert("Invalid Service Description")
+          alert("Invalid Service Amount")
         }
       } else {
-        alert("Invalid Service Name")
+        alert("Invalid Service Description")
       }
+    } else {
+      alert("Invalid Service Name")
+    }
   }
   return (
     <div className='addservice'>
       <form className='aservice'>
         <h1>Add Service</h1>
         <label id='name'>Service Name</label>
-        <TextField style={{ marginBottom: 20, marginTop: 10 }} fullWidth id="name" multiline maxRows={2}  onChange={(e) => setSName(e.target.value)} />
+        <TextField style={{ marginBottom: 20, marginTop: 10 }} fullWidth id="name" multiline maxRows={2} onChange={(e) => setSName(e.target.value)} />
         <label id='desc'>Service Description</label>
-        <TextField style={{ marginBottom: 20, marginTop: 10 }} fullWidth id="desce" multiline maxRows={6}  onChange={(e) => setSDesc(e.target.value)} />
+        <TextField style={{ marginBottom: 20, marginTop: 10 }} fullWidth id="desce" multiline maxRows={6} onChange={(e) => setSDesc(e.target.value)} />
         <label>Amount</label>
         <TextField type="text" style={{ marginBottom: 20, marginTop: 10 }} multiline maxRows={1} onChange={(e) => setSAmount(e.target.value)} />
         <div className='actions'>
@@ -65,7 +68,7 @@ function AddService() {
         </div>
       </form>
       <div>
-        <img src={service} alt="service"/>
+        <img src={service} alt="service" />
       </div>
     </div>
   )

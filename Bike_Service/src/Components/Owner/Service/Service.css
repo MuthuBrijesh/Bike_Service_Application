@@ -21,12 +21,21 @@
     justify-content: space-between;
 }
 
+.custservice .header .noofbook{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:5%;
+}
+
 .custservice .linkadd{
     text-decoration: none;
 }
 
 
 .custservice .box{
+    margin-top: 3%;
     width:80%;
 }
 
@@ -44,9 +53,26 @@
     font-weight: 700;
 }
 
+@media only screen and (max-width : 800px){
+    .custservice .header{  
+        flex-direction: column;
+        gap:7%;
+        margin-bottom: 12%;
+    }
+
+    .custservice .header .noofbook{  
+        flex-direction: column;
+    }
+
+    .custservice h1{
+        font-size: 3rem;
+    }
+}
+
 @media only screen and (max-width : 600px){
     .custservice .header{  
         flex-direction: column;
+        margin-bottom: 12%;
     }
 
     .custservice h1{

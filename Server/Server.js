@@ -143,25 +143,40 @@ app.post("/updatebooking", async (req, res) => {
     }
 });
 
+//Update Number of Book per day
+app.post("/updatenoofbook", async (req, res) => {
+    var { noofbook } = req.body;
+    try {
+        const data = await Admin.updateOne({}, { $set: { noofbook: noofbook } });
+        res.send({ status: "ok"});
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 
 //User Service
 //User Login
 app.post("/login", async (req, res) => {
     const { uname, password } = req.body;
-    var user;
-    if(uname === "rideservice2023@gmail.com" || uname === "7123789456"){
-        user = await Admin.findOne({ $or: [{ email: uname }, { phone: uname }] });
-    }else{
-        user = await User.findOne({ $or: [{ email: uname }, { phone: uname }] });
+    try {
+        var user = "";
+        if (uname === "rideservice2023@gmail.com" || uname === "7123789456") {
+            user = await Admin.findOne({}, { pass: 1 });
+        } else {
+            user = await User.findOne({ $or: [{ email: uname }, { phone: uname }] });
+        }
+        if (user === "") {
+            return res.json({ error: "User Not Found" });
+        }
+        const valid = await bcrypt.compare(password, user.pass)
+        if (valid) {
+            return res.json({ status: "ok", data: user });
+        }
+        res.json({ status: "error", error: "Invalid Password" })
+    } catch (error) {
+        console.log(error);
     }
-    if (!user) {
-        return res.json({ error: "User Not Found" });
-    }
-    const valid = await bcrypt.compare(password, user.pass)
-    if (valid) {
-        return res.json({ status: "ok", data: user });
-    }
-    res.json({ status: "error", error: "Invalid Password" })
 })
 
 //User Register
@@ -194,10 +209,10 @@ app.post("/addbooking", async (req, res) => {
     try {
         const check = await CBooking.findOne({ date: date, vno: vno })
         const check2 = await CBooking.findOne({ vno: vno, status: { $in: ["Pending", "Ready"] } })
-        const count1 = await Admin.find({},{noofbook:1})
+        const count1 = await Admin.find({}, { noofbook: 1 })
         var count = await CBooking.find({ date: date }).count()
         console.log(check2)
-        count1=count1[0].noofbook
+        count1 = count1[0].noofbook
         if (check === null) {
             if (check2 === null) {
                 if (count <= count1) {

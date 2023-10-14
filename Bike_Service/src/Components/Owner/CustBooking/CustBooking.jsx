@@ -15,32 +15,36 @@ function CustBooking() {
     const [data, setData] = useState([]);
     var [status, setStatus] = useState(null);
 
-    const FetchAll = () =>{
+    const FetchAll = () => {
         setStatus(null);
     }
 
-    const FetchPending = () =>{
+    const FetchPending = () => {
         setStatus("Pending")
     }
-    
-    const FetchReady = () =>{
+
+    const FetchReady = () => {
         setStatus("Ready")
     }
 
-    const FetchCompleted = () =>{
+    const FetchCompleted = () => {
         setStatus("Completed")
     }
-    
+
 
     useEffect(() => {
-        fetch("http://localhost:5000/fetchallbooking", {
-            method: "POST", crossDomain: true,
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({status}),
-        }).then((res) => res.json())
-            .then((data) => {
-                setData(data.data);
-            });
+        try {
+            fetch("http://localhost:5000/fetchallbooking", {
+                method: "POST", crossDomain: true,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ status }),
+            }).then((res) => res.json())
+                .then((data) => {
+                    setData(data.data);
+                });
+        } catch (error) {
+            console.log(error);
+        }
     });
 
     const updateservice = (_id) => {
@@ -56,7 +60,7 @@ function CustBooking() {
                 <Button variant="contained" onClick={FetchReady}>Ready</Button>
                 <Button variant="contained" onClick={FetchCompleted}>Complete</Button>
             </div>
-            <div className='box' style={{marginTop:30}}>
+            <div className='box' style={{ marginTop: 30 }}>
                 <TableContainer component={Paper} >
                     <Table sx={{ Width: '100%', backgroundColor: '#DED1BD' }} aria-label="simple table">
                         <TableHead>

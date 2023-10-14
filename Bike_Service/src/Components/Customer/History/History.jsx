@@ -8,22 +8,25 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useState ,useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 function History() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const email = sessionStorage.getItem("Email")
-    console.log(email)
-    fetch("http://localhost:5000/fetchbooking", {
-      method: "POST", crossDomain: true,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-    }).then((res) => res.json())
-      .then((data) => {
-        setData(data.data);
-      });
+    try {
+      fetch("http://localhost:5000/fetchbooking", {
+        method: "POST", crossDomain: true,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      }).then((res) => res.json())
+        .then((data) => {
+          setData(data.data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   const rows = [{ id: "601", date: '12/06/2023', name: 'Muthu', service: 'Oil Change Oil Change Oil Change Oil Change', status: 'progress' },
@@ -39,7 +42,7 @@ function History() {
           <Table sx={{ Width: '100%', backgroundColor: '#DED1BD' }} aria-label="simple table">
             <TableHead>
               <TableRow>
-              <TableCell >Date</TableCell>
+                <TableCell >Date</TableCell>
                 <TableCell >Name</TableCell>
                 <TableCell >Bike Number</TableCell>
                 <TableCell >Service</TableCell>
@@ -54,7 +57,7 @@ function History() {
                   <TableCell scope="row">{row.date}</TableCell>
                   <TableCell >{row.name}</TableCell>
                   <TableCell >{row.vno}</TableCell>
-                  <TableCell >{row.service+""}</TableCell>
+                  <TableCell >{row.service + ""}</TableCell>
                   <TableCell >{row.status}</TableCell>
                   <TableCell><Button variant="contained" >View</Button></TableCell>
                 </TableRow>

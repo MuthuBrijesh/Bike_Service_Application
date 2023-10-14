@@ -41,9 +41,9 @@ function Booked() {
           <Table sx={{ Width: '100%', backgroundColor: '#DED1BD' }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell >Register ID</TableCell>
                 <TableCell >Date</TableCell>
                 <TableCell >Name</TableCell>
+                <TableCell >Bike Number</TableCell>
                 <TableCell >Service</TableCell>
                 <TableCell >Status</TableCell>
                 <TableCell >Action</TableCell>

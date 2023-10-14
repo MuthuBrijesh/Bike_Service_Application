@@ -13,9 +13,11 @@ function ViewBooking() {
     const [data, setData] = useState([]);
 
     const _id = sessionStorage.getItem("BookingID")
+    console.log(_id)
 
     //Fetching Booking Details
     useEffect(() => {
+        console.log("HI")
         fetch("http://localhost:5000/viewbooking", {
             method: "POST", crossDomain: true,
             headers: { "Content-Type": "application/json" },
@@ -45,7 +47,7 @@ function ViewBooking() {
     return (
         <>
             <div className='vbooking'>
-                <h1>Booking</h1>
+                <h1>Booking Details</h1>
             </div>
             <div className='viewbooking'>
                 <form>

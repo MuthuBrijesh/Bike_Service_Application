@@ -6,13 +6,14 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-//Send In Blue Email
+//Send In Blue Platform for Email
 const SibApiV3Sdk = require('sib-api-v3-sdk');
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 const apiKey = defaultClient.authentications['api-key'];
 apiKey.apiKey = "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";
 const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
+//MongoDB URL
 const mogoDburl = "mongodb+srv://rideservice2023:service2023@ride.qoibsj2.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp";
 
 //Database Connection
@@ -27,6 +28,8 @@ app.listen(5000, () => console.log('Server Started'));
 //Importing Modules
 require("./src/Customer");
 const User = mongoose.model("CustInfo");
+require("./src/Admin");
+const Admin = mongoose.model("AdminInfo");
 require("./src/Addservice");
 const AService = mongoose.model("AddService");
 require("./src/AddBooking");
@@ -114,7 +117,6 @@ app.post("/updatebooking", async (req, res) => {
     const { _id, status } = req.body;
     try {
         var data = await CBooking.updateOne({ _id: _id }, { $set: { status: status } });
-        console.log(data)
         data = await CBooking.findOne({ _id: _id });
         if (status === "Ready") {
             const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
@@ -146,7 +148,12 @@ app.post("/updatebooking", async (req, res) => {
 //User Login
 app.post("/login", async (req, res) => {
     const { uname, password } = req.body;
-    const user = await User.findOne({ $or: [{ email: uname }, { phone: uname }] });
+    var user;
+    if(uname === "rideservice2023@gmail.com" || uname === "7123789456"){
+        user = await Admin.findOne({ $or: [{ email: uname }, { phone: uname }] });
+    }else{
+        user = await User.findOne({ $or: [{ email: uname }, { phone: uname }] });
+    }
     if (!user) {
         return res.json({ error: "User Not Found" });
     }
@@ -180,40 +187,48 @@ app.post("/signup", async (req, res) => {
     }
 });
 
-//ADD Booking
+//ADD Booking and Send Email
 app.post("/addbooking", async (req, res) => {
     const { date, name, email, phone, vname, vno, vmodel, address, service } = req.body;
     const status = "Pending"
     try {
         const check = await CBooking.findOne({ date: date, vno: vno })
-        const count = await CBooking.find({ date: date }).count()
+        const check2 = await CBooking.findOne({ vno: vno, status: { $in: ["Pending", "Ready"] } })
+        const count1 = await Admin.find({},{noofbook:1})
+        var count = await CBooking.find({ date: date }).count()
+        console.log(check2)
+        count1=count1[0].noofbook
         if (check === null) {
-            if (count < 3) {
-                await CBooking.create({ date, name, email, phone, vname, vno, vmodel, address, status, service });
-                const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
-                const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
-                sendSmtpEmail.to = [{ "email": "rideservice2023@gmail.com" }];
-                sendSmtpEmail.templateId = 1;
-                sendSmtpEmail.params = {
-                    "Date": date,
-                    "Name": name,
-                    "Email": email,
-                    "Phone": phone,
-                    "Make": vname,
-                    "Model": vmodel,
-                    "Number": vno,
-                    "Address": address,
-                    "Service": service,
+            if (check2 === null) {
+                if (count <= count1) {
+                    await CBooking.create({ date, name, email, phone, vname, vno, vmodel, address, status, service });
+                    const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+                    const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+                    sendSmtpEmail.to = [{ "email": "rideservice2023@gmail.com" }];
+                    sendSmtpEmail.templateId = 1;
+                    sendSmtpEmail.params = {
+                        "Date": date,
+                        "Name": name,
+                        "Email": email,
+                        "Phone": phone,
+                        "Make": vname,
+                        "Model": vmodel,
+                        "Number": vno,
+                        "Address": address,
+                        "Service": service,
 
-                };
-                apiInstance.sendTransacEmail(sendSmtpEmail).then(() => {
-                    console.log("Booked email sent");
-                }).catch((err) => {
-                    console.log(err);
-                });
-                res.send({ status: "ok" });
+                    };
+                    apiInstance.sendTransacEmail(sendSmtpEmail).then(() => {
+                        console.log("Booked email sent");
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+                    res.send({ status: "ok" });
+                } else {
+                    res.send({ status: "Bookfilles" });
+                }
             } else {
-                res.send({ status: "Bookfilles" });
+                res.send({ status: "NotCompleted" })
             }
         } else {
             res.send({ status: "exist" });
@@ -235,7 +250,7 @@ app.post("/fetchbooking", async (req, res) => {
     }
 });
 
-//Fetch All Booking
+//Fetch All Booking without Status Completed
 app.post("/fetchbook", async (req, res) => {
     const { email } = req.body;
     try {
@@ -246,11 +261,52 @@ app.post("/fetchbook", async (req, res) => {
     }
 });
 
+//Details of  Booking
 app.post("/viewbooking", async (req, res) => {
     const { _id } = req.body;
     try {
         const data = await CBooking.findOne({ _id });
         res.send({ status: "OK", data: data });
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+//Admin and User Forgot Password
+app.post("/forgotpasswordotp", async (req, res) => {
+    var { email, otp } = req.body;
+    console.log(email, otp)
+    try {
+        const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+        const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+        sendSmtpEmail.to = [{ "email": email }];
+        sendSmtpEmail.templateId = 3;
+        sendSmtpEmail.params = {
+            "Otp": otp
+        };
+        apiInstance.sendTransacEmail(sendSmtpEmail).then(() => {
+            console.log("Password reset email sent");
+        }).catch((err) => {
+            console.log(err);
+        });
+        res.send({ status: "ok" });
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+//Update Password
+app.post("/forgotpasswordupdate", async (req, res) => {
+    var { email, pass } = req.body;
+    pass = await bcrypt.hash(pass, 13);
+    try {
+        if (email === "rideservice2023@gmail.com" || email === "7123789456") {
+            data = await Admin.updateOne({ email: email }, { $set: { pass: pass } });
+        } else {
+            data = await User.updateOne({ email: email }, { $set: { pass: pass } });
+        }
+        console.log(data)
+        res.send({ status: "ok", data: data });
     } catch (error) {
         console.log(error);
     }

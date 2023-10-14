@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './Signup.css';
 import validator from 'validator';
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
 
@@ -8,6 +9,8 @@ const Signup = () => {
   const [phone, setPhone] = useState();
   const [pass, setPass] = useState();
   const [cpass, setCPass] = useState();
+  const navigate = useNavigate()
+  
   const handleSubmit = (e) => {
     e.preventDefault()
     if (validator.isEmail(email) && email != null) {
@@ -27,6 +30,7 @@ const Signup = () => {
                 console.log(data, "UserRegister");
                 if (data.status === "ok") {
                   alert("Register Succesfully");
+                  navigate('../login');
                 }
                 else {
                   alert("User Email or Phone Number Already Exist");
@@ -34,9 +38,10 @@ const Signup = () => {
               });
           } else {
             alert('Is Not Strong Password')
+            alert('Enter Valid Password format should be have atleast one lowercase, uppercase, number, symbol and length of this password shoul be 8')
           }
         } else {
-          alert('Enter Valid Password format should be have a lowercase, uppercase, number, symbol and length of this password shoul be 8')
+          alert('Password Mismatch')
         }
       } else {
         alert("Enter Valid Phone Number")

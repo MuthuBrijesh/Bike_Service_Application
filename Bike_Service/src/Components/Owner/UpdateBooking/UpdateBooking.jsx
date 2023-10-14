@@ -35,7 +35,7 @@ function UpdateBooking() {
     const handleUpdate = () => {
         console.log("Updating")
         if (data.status === "Completed") {
-            alert("Already the Service is Cmopleted")
+            alert("Already the Service is Completed")
         }
         else {
             if (data.status === "Ready") {

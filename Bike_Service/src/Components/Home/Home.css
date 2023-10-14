@@ -1,0 +1,101 @@
+.Home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+
+.Home .HomeDetails{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:50%;
+}
+.Home .HomeDetails .container{
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+.Home .HomeDetails .container h1{
+    font-size: 6rem;
+    color: var(--main-color);
+}
+
+.Home .HomeDetails .container h3{
+    margin-top: 4%;
+    font-size: 3rem;
+    color: var(--sub-text-color);
+}
+
+.Home .HomeDetails .container button{
+    min-width: 250px;
+    height: 50px;
+    margin-top: 5%;
+    margin-bottom: 20px;
+    background-color: var(--sub-text-color);
+    color: var(--main-color);
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: larger;
+    cursor:pointer;
+}
+
+.Home .HomeImage img{
+    height:600px
+}
+
+@media only screen and (max-width : 1400px){
+    .Home .HomeImage img{
+        height:500px
+    }
+}
+
+@media only screen and (max-width : 1200px){
+    .Home .HomeDetails .container h1{
+        font-size: 3.5rem;
+    }
+    .Home .HomeImage img{
+        height:400px
+    }
+}
+
+@media only screen and (max-width : 1000px){
+    .Home{
+        flex-direction: column;
+    }
+    .Home .HomeDetails{
+        width:90%;
+    }
+
+    .Home .HomeDetails .container h1{
+        font-size: 3.8rem;
+        font-family:'Times New Roman', Times, serif;
+    }
+
+    .Home .HomeDetails .container{
+        width:100%;
+    }
+
+    .Home .HomeDetails .container{
+        margin-left: 10%;
+    }
+    
+    .Home .HomeDetails .container button{
+        min-width: 200px;
+    }
+}
+
+@media only screen and (max-width : 600px){
+    .Home .HomeDetails .container h1{
+        font-size: 3rem;
+        font-family:'Times New Roman', Times, serif;
+    }
+    .Home .HomeDetails .container h3{
+        font-size: 1.8rem;
+    }
+    .Home .HomeImage img{
+        margin-top: 0%;
+        margin-left: 0%;
+        height:300px;
+    }
+}

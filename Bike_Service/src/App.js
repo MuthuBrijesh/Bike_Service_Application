@@ -14,6 +14,8 @@ import ViewBooking from './Components/Customer/ViewBooking/ViewBooking';
 import CustBooking from './Components/Owner/CustBooking/CustBooking'; //Admin
 import UpdateBooking  from './Components/Owner/UpdateBooking/UpdateBooking'; //Admin
 import EditService from './Components/Owner/EditService/EditService';
+import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
+import Home from './Components/Home/Home';
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
       <Navbar />
       <div className='App_main_pagecontent'>
           <Routes>
+            <Route path="/" element={<Home />}></Route>
             <Route path="/addservice" element={<AddService />}></Route>
             <Route path="/adminservice" element={<AdminService />}></Route>
             <Route path="/login" element={<Login />}></Route>
@@ -34,6 +37,7 @@ function App() {
             <Route path="/admincustbooking" element={<CustBooking />}></Route>
             <Route path="/updatebooking" element={<UpdateBooking />}></Route>
             <Route path="/editservice" element={<EditService />}></Route>
+            <Route path="/forgotpassword" element={<ForgotPassword />}></Route>
           </Routes>
       </div>
     </div>

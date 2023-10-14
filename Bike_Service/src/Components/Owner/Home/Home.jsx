@@ -8,6 +8,10 @@ function Home() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
 
+  const navigatebooking = () =>{
+    navigate("../admincustbooking")
+  }
+
   return (
     <div className='AdminHome'>
       <div className="background-video">
@@ -19,7 +23,7 @@ function Home() {
     <div className='container'>
         <h1>Ride Bike Services</h1>
         <h3>Work with Confidence</h3>
-        <button>View Booking</button>
+        <button onClick={navigatebooking}>View Booking</button>
       </div>
     </div>
   </div>

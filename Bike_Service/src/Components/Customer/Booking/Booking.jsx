@@ -11,12 +11,12 @@ import { useNavigate } from "react-router-dom";
 
 function Booking() {
     //Use State
-    const [name, setOName] = useState();
-    const [vname, setVName] = useState();
-    const [vno, setVNo] = useState();
-    const [vmodel, setVModel] = useState();
-    const [address, setVAddress] = useState();
-    const [date, setDate] = useState();
+    const [name, setOName] = useState("");
+    const [vname, setVName] = useState("");
+    const [vno, setVNo] = useState("");
+    const [vmodel, setVModel] = useState("");
+    const [address, setVAddress] = useState("");
+    const [date, setDate] = useState("");
     const [service, setService] = React.useState([]);
     const [data, setData] = useState([]);
 
@@ -32,6 +32,11 @@ function Booking() {
     curr[3] = (parseInt(curr[2]) + 1).toString();
     const sdate = curr[2] + '-' + curr[0] + '-' + curr[1]; //Current Date
     const edate = curr[3] + '-' + curr[0] + '-' + curr[1]; //A Year Gap Between Current Date
+
+    //Validation
+    const alpha = /^[A-Za-z ]+$/; //Only Alpha
+    const VNO = /^[A-Z]{2}[0-9]{2}[A-Z]{1,2}[0-9]{4}$/; //Vehicle Number Validation
+    const alphanumeric = /^[0-9a-zA-Z ]+$/; //Validate Alpha Numeric
 
     //Services
     useEffect(() => {
@@ -54,12 +59,12 @@ function Booking() {
     const handleSubmit = () => {
         const email = sessionStorage.getItem("Email")
         const phone = sessionStorage.getItem("Phone")
-        if (date != null) {
-            if (name != null) {
-                if (vname != null) {
-                    if (vno != null) {
-                        if (vmodel != null) {
-                            if (address != null) {
+        if (date !== "") {
+            if (name !== "" && alpha.test(name)) {
+                if (vname !== "" && alpha.test(vname)) {
+                    if (vno !== "" && VNO.test(vno)) {
+                        if (vmodel !== "") {
+                            if (address !== "") {
                                 if (service.length > 0) {
                                     fetch("http://localhost:5000/addbooking", {
                                         method: "POST", crossDomain: true,
@@ -75,6 +80,9 @@ function Booking() {
                                             } else if (data.status === "Bookfilles") {
                                                 alert("Today's Booking is Filled");
                                             }
+                                            else if (data.status === "NotCompleted") {
+                                                alert("The Bike is Not Completed")
+                                            }
                                             else {
                                                 alert("Booking Already Register in Same Date");
                                             }
@@ -83,25 +91,25 @@ function Booking() {
                                     alert("Pick any one Service")
                                 }
                             } else {
-                                alert("Enter the Address")
+                                alert("Invalid the Address")
                             }
                         } else {
-                            alert("Enter the Vehicle Model")
+                            alert("Invalid the Vehicle Model")
                         }
                     } else {
-                        alert("Enter the Vehicle Number")
+                        alert("Invalid the Vehicle Number")
                     }
                 } else {
-                    alert("Enter the Vehicle Name")
+                    alert("Invalid the Vehicle Name")
                 }
             } else {
-                alert("Enter the Name")
+                alert("Invalid the Name")
             }
         } else {
             alert("Pick a Date")
         }
     }
-    
+
     //Cancel the Form
     const handleCancel = () => {
         navigate("../customerhome")

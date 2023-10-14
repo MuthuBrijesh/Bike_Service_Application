@@ -13,7 +13,6 @@ function EditService() {
   const [samount, setSAmount] = useState();
   const navigate = useNavigate()
   var [data, setData] = useState([]);
-
   const _id = sessionStorage.getItem("changeser");
   useEffect(() => {
     try {
@@ -36,6 +35,10 @@ function EditService() {
     navigate(`../adminservice`)
   }
 
+  //Validation
+  const alpha = /^[A-Za-z ]+$/; //Only Alpha
+  const alphanumeric = /^[0-9a-zA-Z ]+$/; //Validate Alpha Numeric
+
   const handleSubmit = () => {
     if (sname !== undefined) {
       data.sname = sname
@@ -46,22 +49,31 @@ function EditService() {
     if (samount !== undefined) {
       data.samount = samount
     }
-    try {
-      fetch("http://localhost:5000/updateservice", {
-        method: "POST", crossDomain: true,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ data }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.status === "OK") {
-            alert("Updated Succesfully");
-            navigate(`../adminservice`)
-          }
-        });
-    } catch (error) {
-      console.log(error);
+    if (alpha.test(data.sname)) {
+      if (alphanumeric.test(data.samount)) {
+        try {
+          fetch("http://localhost:5000/updateservice", {
+            method: "POST", crossDomain: true,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ data }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.status === "OK") {
+                alert("Updated Succesfully");
+                navigate(`../adminservice`)
+              }
+            });
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        alert("Invalid Amount")
+      }
+    } else {
+      alert("Invalid Service Name")
     }
+
   }
   return (
     <div className='editservice'>

@@ -34,7 +34,7 @@ function CustBooking() {
 
     useEffect(() => {
         try {
-            fetch("http://localhost:5000/fetchallbooking", {
+            fetch("http://localhost:5000/custbooking", {
                 method: "POST", crossDomain: true,
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ status }),

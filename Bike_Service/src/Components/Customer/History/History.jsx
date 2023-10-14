@@ -16,7 +16,7 @@ function History() {
   useEffect(() => {
     const email = sessionStorage.getItem("Email")
     try {
-      fetch("http://localhost:5000/fetchbooking", {
+      fetch("http://localhost:5000/history", {
         method: "POST", crossDomain: true,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -28,11 +28,6 @@ function History() {
       console.log(error);
     }
   });
-
-  const rows = [{ id: "601", date: '12/06/2023', name: 'Muthu', service: 'Oil Change Oil Change Oil Change Oil Change', status: 'progress' },
-  { id: "601", date: '12/06/2023', name: 'Muthu', service: 'Oil Change Oil Change Oil Change Oil Change', status: 'progress' },
-  { id: "601", date: '12/06/2023', name: 'Muthu', service: 'Oil Change Oil Change Oil Change Oil Change', status: 'progress' }]
-
 
   return (
     <div className='custhistory'>

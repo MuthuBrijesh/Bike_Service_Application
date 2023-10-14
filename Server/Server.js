@@ -96,7 +96,7 @@ app.post("/deleteservice", async (req, res) => {
 });
 
 //Fetch All Booking
-app.post("/fetchallbooking", async (req, res) => {
+app.post("/custbooking", async (req, res) => {
     const { status } = req.body;
     try {
         if (status == null) {
@@ -255,7 +255,7 @@ app.post("/addbooking", async (req, res) => {
 });
 
 //Fetch All Completed Booking
-app.post("/fetchbooking", async (req, res) => {
+app.post("/history", async (req, res) => {
     const { email } = req.body;
     try {
         const data = await CBooking.find({ email: email, status: "Completed" });

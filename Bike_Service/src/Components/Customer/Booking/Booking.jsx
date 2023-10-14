@@ -67,7 +67,7 @@ function Booking() {
             if (name !== "" && alpha.test(name)) {
                 if (vname !== "" && alpha.test(vname)) {
                     if (vno !== "" && VNO.test(vno)) {
-                        if (vmodel !== "") {
+                        if (vmodel !== "" && alphanumeric.test(vmodel)) {
                             if (address !== "") {
                                 if (service.length > 0) {
                                     fetch("http://localhost:5000/addbooking", {

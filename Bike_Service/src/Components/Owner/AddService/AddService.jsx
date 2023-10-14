@@ -2,7 +2,7 @@ import React from 'react'
 import './AddService.css'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import service from '../../../Assets/5.png';
 
@@ -13,16 +13,18 @@ function AddService() {
   const [samount, setSAmount] = useState();
   const navigate = useNavigate()
 
-  const _id = sessionStorage.getItem("changeser");
-
   const handleCancel = () => {
     navigate(`../adminservice`)
   }
 
+  //Validation
+  const alpha = /^[A-Za-z ]+$/; //Only Alpha
+  const alphanumeric = /^[0-9a-zA-Z ]+$/; //Validate Alpha Numeric
+
   const handleSubmit = () => {
-    if (sname != null) {
+    if (sname != null && alpha.test(sname)) {
       if (sdesc != null) {
-        if (samount != null && samount > 0) {
+        if (samount != null && samount > 0 && alphanumeric.test(samount)) {
           try {
             fetch("http://localhost:5000/addservice", {
               method: "POST", crossDomain: true,
@@ -61,7 +63,7 @@ function AddService() {
         <label id='desc'>Service Description</label>
         <TextField style={{ marginBottom: 20, marginTop: 10 }} fullWidth id="desce" multiline maxRows={6} onChange={(e) => setSDesc(e.target.value)} />
         <label>Amount</label>
-        <TextField type="text" style={{ marginBottom: 20, marginTop: 10 }} multiline maxRows={1} onChange={(e) => setSAmount(e.target.value)} />
+        <TextField style={{ marginBottom: 20, marginTop: 10 }} multiline maxRows={1} onChange={(e) => setSAmount(e.target.value)} />
         <div className='actions'>
           <Button variant="contained" style={{ backgroundColor: 'green' }} onClick={handleSubmit}>Confirm</Button><br></br>
           <Button variant="contained" style={{ backgroundColor: 'red' }} onClick={handleCancel}>Cancel</Button>

@@ -2,11 +2,9 @@ import React from 'react'
 import './Home.css';
 import BikeRepair from '../../../Assets/bike2.png';
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from 'react';
 
 function Home() {
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
 
   const navigatebooking = () =>{
     navigate("../admincustbooking")

@@ -38,9 +38,7 @@ There are two distinct user roles within the system:
 ## Login
 
 - Admin 
-```bash
-username: rideservice2023@gmail.com or 7123789456
-```
+`username: rideservice2023@gmail.com or 7123789456`
 - User can Create Account  
 
 ## Deployment

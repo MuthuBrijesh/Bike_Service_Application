@@ -9,7 +9,10 @@ There are two distinct user roles within the system:
     2. Customer: The Customer role can add new booking and view the status and history of the Booking.
 
 ## Features
-
+- Responsiveness
+- Security
+- Authentication
+  
 ### Bike station owner:
 - Should be able to Create / Edit / Delete / All his services and their details
 - View a list of all bookings of Pending / Ready / Completed / All for a delivery 
@@ -18,6 +21,7 @@ There are two distinct user roles within the system:
 - Mark a booking as completed
 - Receive an email whenever a booking is made
 - Update the Password by using OTP through Email
+
 ### Customers
 - Should be able to register for an account with his email address and mobile number
 - Book a service at a particular date
@@ -48,6 +52,7 @@ There are two distinct user roles within the system:
 ```bash
 git clone https://github.com/MuthuBrijesh/Bike_Service_Application.git
 ```
+
 #### 2. Go to the project directory and install dependencies for both the client and server
 ```bash
 cd Bike_Service
@@ -57,57 +62,32 @@ npm install
 cd Server
 npm install
 ```
-#### 3. Start the Server
-```bash
-cd Server
-npm start
-```
-#### 4. Install the Express.js, Mongoose and Cors dependencies by running the following command
-```bash
-npm i express cors mongoose  
-```
-#### 5. Run the following command to automatically initialize a Server
-Nodemon is a tool that helps develop Node.js based applications by automatically restarting the node application when file changes in the directory are detected.
-```bash
-npm i nodemon
-```
-#### 6. Run the following code to install bcrypt 
-A library to help you hash passwords.
-```bash
-npm i bcrypt
-```
-#### 7. Run the following code to install SendinBlue
-SendinBlue's API exposes the entire SendinBlue features via a standardized programmatic interface
-```bash
-npm i sib-api-v3-sdk
-````
 
-#### 8. Start the Bike_Service
-```bash
-cd Bike_Service
-npm start
-```
-#### 9. Run the following command to install MaterialUI
-```bash
-npm i @mui/material @mui/styled-engine-sc styled-components
-npm i @mui/icons-material
-npm i @fontsource/roboto
-npm i @mui/material @emotion/react @emotion/styled  
-npm i @material-ui/core
-```
-#### 10. Run the following code to install validator 
-A library of string validators.
-```bash
-npm i validator
-```
-#### 11. Run the following code to install react router  
-```bash
-npm i react-router-dom
-```
+#### 3. Install the Dependencies of Server
 
-#### 12. Run the following code to install React Icons
+Dependencies info :
+ - Express : Create an API very easily for the server
+ - Mongoose : Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports Node.js.
+ - Cors : CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
+ - Nodemon : Nodemon is a tool that helps develop Node.js based applications by automatically restarting the node application when file changes in the directory are detected.
+ - Bcrypt : A library to help you hash passwords.
+ - SendinBlue : SendinBlue's API exposes the entire SendinBlue features via a standardized programmatic interface
+
 ```bash
-npm i react-icons
+npm i express cors mongoose nodemon bcrypt sib-api-v3-sdk
+```
+#### 4. Install the Dependencies of Bike_service
+ - MaterialUI : Material UI is an open-source React component library that implements Google's Material Design
+ - Validator : This library validates and sanitizes strings only.
+ - React Icons : Which provides a collection of popular icon libraries (such as Font Awesome, Material Design, and Octicons) that can be easily used in a React application.
+ - React Router Dom : The react-router-dom package contains bindings for using React Router in web applications.
+```bash
+npm i @mui/material @mui/styled-engine-sc styled-components @mui/icons-material @fontsource/roboto @mui/material @emotion/react @emotion/styled @material-ui/core validator react-router-dom react-icons
+```
+#### 5. Start the both, Server and Bike_Service
+To start the project, the below code should be run in both, Server and Bike_Service directory.
+```bash
+npm start
 ```
 
 ## Some of Screenshots

@@ -34,6 +34,7 @@ There are two distinct user roles within the system:
 - Expressjs
 - MongoDB Atlas
 - MaterialUI
+- SendinBlue (Email)
 
 ## Login
 
@@ -75,12 +76,18 @@ A library to help you hash passwords.
 ```bash
 npm i bcrypt
 ```
-#### 7. Start the Bike_Service
+#### 7. Run the following code to install SendinBlue
+SendinBlue's API exposes the entire SendinBlue features via a standardized programmatic interface
+```bash
+npm i sib-api-v3-sdk
+````
+
+#### 8. Start the Bike_Service
 ```bash
 cd Bike_Service
 npm start
 ```
-#### 8. Run the following command to install MaterialUI
+#### 9. Run the following command to install MaterialUI
 ```bash
 npm i @mui/material @mui/styled-engine-sc styled-components
 npm i @mui/icons-material
@@ -88,14 +95,19 @@ npm i @fontsource/roboto
 npm i @mui/material @emotion/react @emotion/styled  
 npm i @material-ui/core
 ```
-#### 9. Run the following code to install validator 
+#### 10. Run the following code to install validator 
 A library of string validators.
 ```bash
 npm i validator
 ```
-#### 10. Run the following code to install react router  
+#### 11. Run the following code to install react router  
 ```bash
 npm i react-router-dom
+```
+
+#### 12. Run the following code to install React Icons
+```bash
+npm i react-icons
 ```
 
 ## Some of Screenshots

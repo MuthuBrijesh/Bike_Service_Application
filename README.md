@@ -61,21 +61,26 @@ npm install
 cd Server
 npm start
 ```
-#### 4. Start the Bike_Service
-```bash
-cd Bike_Service
-npm start
-```
-#### 5. Install the Express.js, Mongoose and Cors dependencies by running the following command
+#### 4. Install the Express.js, Mongoose and Cors dependencies by running the following command
 ```bash
 npm i express cors mongoose  
 ```
-#### 6. Run the following command to automatically initialize a Server
+#### 5. Run the following command to automatically initialize a Server
 Nodemon is a tool that helps develop Node.js based applications by automatically restarting the node application when file changes in the directory are detected.
 ```bash
 npm i nodemon
 ```
-#### 7. Run the following command to install MaterialUI
+#### 6. Run the following code to install bcrypt 
+A library to help you hash passwords.
+```bash
+npm i bcrypt
+```
+#### 7. Start the Bike_Service
+```bash
+cd Bike_Service
+npm start
+```
+#### 8. Run the following command to install MaterialUI
 ```bash
 npm i @mui/material @mui/styled-engine-sc styled-components
 npm i @mui/icons-material
@@ -83,15 +88,10 @@ npm i @fontsource/roboto
 npm i @mui/material @emotion/react @emotion/styled  
 npm i @material-ui/core
 ```
-#### 8. Run the following code to install validator 
+#### 9. Run the following code to install validator 
 A library of string validators.
 ```bash
 npm i validator
-```
-#### 9. Run the following code to install bcrypt 
-A library to help you hash passwords.
-```bash
-npm i bcrypt
 ```
 #### 10. Run the following code to install react router  
 ```bash

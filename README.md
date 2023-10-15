@@ -48,19 +48,20 @@ There are two distinct user roles within the system:
 
 ## Deployment
 
-#### 1. Clone the Reposotiry
+#### 1. Clone the Repository
+Clone the Repository by using this github link 
 ```bash
-git clone https://github.com/MuthuBrijesh/Bike_Service_Application.git
+https://github.com/MuthuBrijesh/Bike_Service_Application.git
 ```
 
 #### 2. Go to the project directory and install dependencies for both the client and server
 ```bash
 cd Bike_Service
-npm install
+npm int
 ```
 ```bash
 cd Server
-npm install
+npm init
 ```
 
 #### 3. Install the Dependencies of Server
@@ -82,7 +83,12 @@ npm i express cors mongoose nodemon bcrypt sib-api-v3-sdk
  - React Icons : Which provides a collection of popular icon libraries (such as Font Awesome, Material Design, and Octicons) that can be easily used in a React application.
  - React Router Dom : The react-router-dom package contains bindings for using React Router in web applications.
 ```bash
-npm i @mui/material @mui/styled-engine-sc styled-components @mui/icons-material @fontsource/roboto @mui/material @emotion/react @emotion/styled @material-ui/core validator react-router-dom react-icons
+npm i react-router-dom validator react-icons
+npm i @mui/material @mui/styled-engine-sc styled-components
+npm i @mui/icons-material
+npm i @fontsource/roboto
+npm i @material-ui/core
+npm i @mui/material @emotion/react @emotion/styledreact-icons
 ```
 #### 5. Start the both, Server and Bike_Service
 To start the project, the below code should be run in both, Server and Bike_Service directory.

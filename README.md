@@ -80,7 +80,7 @@ npm i express cors mongoose nodemon bcrypt sib-api-v3-sdk
 #### 4. Install the Dependencies of Bike_service
  - MaterialUI : Material UI is an open-source React component library that implements Google's Material Design
  - Validator : This library validates and sanitizes strings only.
- - React Icons : Which provides a collection of popular icon libraries (such as Font Awesome, Material Design, and Octicons) that can be easily used in a React application.
+ - React Icons : It provides a collection of popular icon libraries (such as Font Awesome, Material Design, and Octicons) that can be easily used in a React application.
  - React Router Dom : The react-router-dom package contains bindings for using React Router in web applications.
 ```bash
 npm i react-router-dom validator react-icons

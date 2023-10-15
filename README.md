@@ -20,6 +20,7 @@ There are two distinct user roles within the system:
 - Mark a booking as ready for delivery
 - Mark a booking as completed
 - Receive an email whenever a booking is made
+- Login Owner Account 
 - Update the Password by using OTP through Email
 
 ### Customers
@@ -29,7 +30,6 @@ There are two distinct user roles within the system:
 - See all his previous bookings
 - Receive an email as soon as his booking is ready for delivery
 - Login / Signup User Account
-- Login Owner Account 
 - Update the Password by using OTP through Email
 
 ## Technologies

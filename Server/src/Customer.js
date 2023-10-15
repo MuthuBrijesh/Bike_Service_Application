@@ -8,3 +8,13 @@ const CustDetailsScehma = new mongoose.Schema({
     },
     { collection: "CustInfo", } );
 mongoose.model("CustInfo", CustDetailsScehma);
+
+//Samlpe Data
+/*
+const CustInfo = [{
+    email : "muthubrijeshramasamy20@gmail.com",
+    phone : "7502717171"
+    pass : "Service@2023" // Data will convert into hashed value and stored in the Database
+    role : "User"
+}]
+*/ 

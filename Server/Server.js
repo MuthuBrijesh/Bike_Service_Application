@@ -6,6 +6,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+//Sample Data is Added to the Schema Page
+
 //Send In Blue Platform for Email
 const SibApiV3Sdk = require('sib-api-v3-sdk');
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
@@ -211,7 +213,6 @@ app.post("/addbooking", async (req, res) => {
         const check2 = await CBooking.findOne({ vno: vno, status: { $in: ["Pending", "Ready"] } })
         const count1 = await Admin.find({}, { noofbook: 1 })
         var count = await CBooking.find({ date: date }).count()
-        console.log(check2)
         count1 = count1[0].noofbook
         if (check === null) {
             if (check2 === null) {
@@ -290,7 +291,6 @@ app.post("/viewbooking", async (req, res) => {
 //Admin and User Forgot Password
 app.post("/forgotpasswordotp", async (req, res) => {
     var { email, otp } = req.body;
-    console.log(email, otp)
     try {
         const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
         const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
@@ -320,7 +320,6 @@ app.post("/forgotpasswordupdate", async (req, res) => {
         } else {
             data = await User.updateOne({ email: email }, { $set: { pass: pass } });
         }
-        console.log(data)
         res.send({ status: "ok", data: data });
     } catch (error) {
         console.log(error);

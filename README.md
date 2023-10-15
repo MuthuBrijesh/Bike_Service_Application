@@ -96,6 +96,10 @@ To start the project, the below code should be run in both, Server and Bike_Serv
 npm start
 ```
 
+## Sample Data
+
+Sample Data is in the Shema Page
+
 ## Some of Screenshots
 
 ![home](https://github.com/MuthuBrijesh/Bike_Service_Application/assets/81966663/dafc4e21-1451-439c-8558-54eff5bc7961)

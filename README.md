@@ -22,6 +22,7 @@ There are two distinct user roles within the system:
 - Receive an email whenever a booking is made
 - Login Owner Account 
 - Update the Password by using OTP through Email
+- Can change number of booking per day
 
 ### Customers
 - Should be able to register for an account with his email address and mobile number

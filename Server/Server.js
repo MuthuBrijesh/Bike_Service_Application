@@ -12,11 +12,11 @@ app.use(cors());
 const SibApiV3Sdk = require('sib-api-v3-sdk');
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 const apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = "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";
+apiKey.apiKey = sendin-blue-apikey;
 const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
 //MongoDB URL
-const mogoDburl = "mongodb+srv://rideservice2023:service2023@ride.qoibsj2.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp";
+const mogoDburl = monodbURL;
 
 //Database Connection
 mongoose.connect(mogoDburl, {
